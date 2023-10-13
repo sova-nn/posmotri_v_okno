@@ -1,5 +1,4 @@
 :root {
-  --border-color: #fff;
   --active-item: #545050;
   --white: #fff;
 }
@@ -84,27 +83,20 @@ ol {
 .result__video-container {
   max-height: 386px;
   position: relative;
-  overflow: hidden;
   width: 100%;
-}
-
-.result__video-container::after {
-  display: block;
-  content: "";
-  padding-top: 56.25%;
+  margin-bottom: 16px;
 }
 
 .result__video-container .result__video {
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
+  object-fit: cover;
 }
 
 
 .search-form {
   display: grid;
-  grid-template-columns: 225px 1fr 1fr;
+  grid-template-columns: 225px 212px 194px;
   grid-template-areas:
     "first-table"
     "second-table"
@@ -112,19 +104,32 @@ ol {
   column-gap: 40px;
 }
 
+.button {
+  height: 34px;
+  width: 98%;
+  margin: 2px;
+
+  border: 1px solid var(--white);
+  background-color: transparent;
+  color: inherit;
+  cursor: pointer;
+  
+  font: inherit;
+  font-weight: 700;
+  line-height: normal;
+}
+
 .search-form__submit-button {
   min-width: 194px;
-  height: 34px;
   align-self: end;
   background-color: transparent;
   color: inherit;
-  border: 1px solid var(--border-color);
-  font-family: 'Fira Sans Condensed', sans-serif;
 
+  font-family: 'Fira Sans Condensed', sans-serif;
   font-size: 18px;
   font-style: normal;
-  font-weight: 700;
   line-height: normal;
+
   cursor: pointer;
 }
 
@@ -138,7 +143,10 @@ ol {
 
 .search-form__label {
   display: flex;
-  height: 27px;
+}
+
+.search-form__label-text {
+  margin-right: 2px;
 }
 
 .search-form__label > span:first-child {
@@ -165,11 +173,36 @@ ol {
 
 .search-form__textfield {
   background-color: transparent;
-  color: rgba(255, 255, 255, 0.70);
+  /* Изменено на белый по желанию ревьюера */
+  color: var(--white);
   border: unset;
   border-top: 1px solid var(--white);
   border-bottom: 1px solid var(--white);
   min-width: 96%;
+
+  /* Снова изменён на цвет, указанный в макете, по желанию ревьюера */
+  color: rgba(255, 255, 255, 0.70);
+  font-family: 'Fira Sans Condensed', sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal; 
+}
+
+.search-form__textfield:focus-visible {
+  outline: 1px solid var(--white);
+}
+
+.search-form__textfield:focus {
+  outline: none;
+}
+
+.search-form__textfield:active {
+  outline: 1px solid var(--white);
+}
+
+.search-form__checkbox-list .search-form__label {
+  cursor: pointer;
 }
 
 /* Блок с картинками */
@@ -206,19 +239,7 @@ ol {
 }
 
 .content__list > li {
-  max-height: 107px;
-}
-
-.content__list::-webkit-scrollbar {
-  /* Убираем скроллбар  https://www.w3schools.com/howto/howto_css_hide_scrollbars.asp */
-  width: 0;
-  height: 0;
-}
-
-.content__list {
-  /* Убираем скроллбар  https://www.w3schools.com/howto/howto_css_hide_scrollbars.asp */
-  scrollbar-width: none;
-  width: 100%;
+  min-height: 107px;
 }
 
 .content__video-card {
@@ -244,15 +265,18 @@ ol {
 }
 
 .content__video-card-description {
-  font: inherit;
   line-height: 16.2px;
+
+  font: inherit;
+  font-family: 'Fira Sans Condensed', sans-serif;
+  line-height: 16.2px; /* 90% */ 
 }
 
 
 .content__card-link {
   text-decoration: none;
   display: block;
-
+  margin: 2px;
 }
 
 .content__card-link_current {
@@ -285,16 +309,31 @@ ol {
 .content__video-card-thumbnail {
   width: 194px;
   height: 103px;
+  display: block;
+  object-fit: cover;
 }
+
+/* Я не могу удалить эо обращение - в противном случае у меня отображаются полосы прокрутки */
+/* Такое поведение возникает только в хроме 118 */
+.content__list::-webkit-scrollbar { 
+  /* Убираем скроллбар  https://www.w3schools.com/howto/howto_css_hide_scrollbars.asp */ 
+  width: 0; 
+  height: 0; 
+} 
 
 .search-form__checkbox-list {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
+  min-height: 27px;
+}
+
+.search-form__label:focus-visible {
+  outline: 1px solid #fff;
 }
 
 .search-form__pseudo-checkbox {
-  margin: 1px 5px 0 0;
+  margin: 1px 4px 0 0;
   display: flex;
   width: 18px;
   height: 18px;
@@ -305,13 +344,6 @@ ol {
 input[type='checkbox']:checked + .search-form__pseudo-checkbox {
   outline: 6px solid var(--white);
   outline-offset: -30px;
-}
-
-.result__video-container {
-  position: relative;
-  width: 711px;
-  height: 386px;
-  margin-bottom: 16px;
 }
 
 .result__video{
@@ -327,41 +359,27 @@ input[type='checkbox']:checked + .search-form__pseudo-checkbox {
   object-position: center;
 }
 
-.more-button {
-  height: 34px;
-  width: 98%;
-  margin: 2px;
 
-  border: 1px solid var(--border-color);
-  background-color: transparent;
-  color: inherit;
-  cursor: pointer;
-  
-  font: inherit;
-  font-weight: 700;
-  line-height: normal;
-}
 
 
 /* Состояния кнопок */
 
-.more-button:focus, 
-.search-form__submit-button:focus, 
+.more-button:focus-visible, 
+.search-form__submit-button:focus-visible {
+  outline: 1px double var(--white);
+}
+
+.button:focus, 
 .content__card-link:focus, 
 .search-form__label:focus {
   outline: none;
 }
 
-.more-button:active, .search-form__submit-button:active {
+.button:active {
   background-color: var(--active-item);
 }
 
 .more-button:hover, .search-form__submit-button:hover {
   text-decoration: underline;
-}
-
-.more-button:focus-visible, 
-.search-form__submit-button:focus-visible {
-  outline: 1px double var(--white);
 }
 
